@@ -24,17 +24,28 @@ public class PerfilService {
     @Autowired
     PerfilRepository perfilRepository;
     
-    public List<Perfil> listarPerfil() {
+    public List<Perfil> findAll() {
         return perfilRepository.findAll();
     }
     
-    public Page<Perfil> listarPerfilPaginado(int page, int size) {
+    public Page<Perfil> findAllPageable(int page, int size) {
         Pageable pageable = new PageRequest(page, size);
         return perfilRepository.findAll(pageable);
     }
     
-    public Perfil salvarPerfil(Perfil perfil) {
+    public Perfil save(Perfil perfil) {
         return perfilRepository.save(perfil);
     }
     
+    public void delete(String id) {
+        perfilRepository.delete(id);
+    }
+    
+    public Perfil findOne(String id) {
+        return perfilRepository.findOne(id);
+    }
+    
+    public List<Perfil> findByNomeLikeIgnoreCase(String nome) {
+        return perfilRepository.findByNomeLikeIgnoreCase(nome);
+    }
 }

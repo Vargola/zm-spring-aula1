@@ -5,7 +5,9 @@
  */
 package com.zm.spring.aula1.entity;
 
+import java.util.List;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -21,6 +23,9 @@ public class Usuario {
     private String nome;
     private String email;
     private int idade;
+    
+    @DBRef
+    private List<Perfil> perfis;
 
     public String getId() {
         return id;
@@ -53,5 +58,13 @@ public class Usuario {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
+
+    public List<Perfil> getPerfis() {
+        return perfis;
+    }
+
+    public void setPerfis(List<Perfil> perfis) {
+        this.perfis = perfis;
+    }
+   
 }

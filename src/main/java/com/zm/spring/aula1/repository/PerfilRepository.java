@@ -7,6 +7,7 @@ package com.zm.spring.aula1.repository;
 
 import com.zm.spring.aula1.entity.Perfil;
 import java.io.Serializable;
+import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
@@ -14,5 +15,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Vargola
  */
 public interface PerfilRepository extends MongoRepository<Perfil , String> {
+    
+    List<Perfil> findByNomeLikeIgnoreCase(String nome);
     
 }
