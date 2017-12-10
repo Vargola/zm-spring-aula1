@@ -27,39 +27,32 @@ public class PerfilController {
     PerfilService perfilService;
     
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public List<Perfil> findAll() {
-        return this.perfilService.findAll();
-    }
-    
-    @RequestMapping(value = "/perfil", method = RequestMethod.POST)
-    public Perfil save(@RequestBody Perfil perfil) {
-        return this.perfilService.save(perfil);
-    }
-
-    @RequestMapping(value = "/perfil", method = RequestMethod.PUT)
-    public Perfil edit(@RequestBody Perfil perfil) {
-        return this.perfilService.save(perfil);
-    }
-    
-    @RequestMapping(value = "/perfil/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable String id) {
-        this.perfilService.delete(id);
+    public List<Perfil> listar() {
+        return this.perfilService.listaPerfil();
     }
 
     @RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
-    public Perfil findOne(@PathVariable String id) {
-        return this.perfilService.findOne(id);
+    public Perfil getById(@PathVariable String id) {
+        return this.perfilService.getById(id);
     }
 
     @RequestMapping(value = "/perfil/{page}/{count}", method = RequestMethod.GET)
-    public Page<Perfil> findAllPageable(
-            @PathVariable int page,
-            @PathVariable int size) {
-        return this.perfilService.findAllPageable(page, size);
+    public Page<Perfil> listaPaginada(@PathVariable int page, @PathVariable int count) {
+        return this.perfilService.listaPaginada(count, page);
     }
-    
-    @RequestMapping(value = "/perfil/{nome}/nome", method = RequestMethod.GET)
-    public List<Perfil> findByNomeLikeIgnoreCase(@PathVariable String nome) {
-        return this.perfilService.findByNomeLikeIgnoreCase(nome);
+
+    @RequestMapping(value = "/perfil", method = RequestMethod.POST)
+    public Perfil salvar(@RequestBody Perfil perfil) {
+        return this.perfilService.salvarPerfil(perfil);
+    }
+
+    @RequestMapping(value = "/perfil", method = RequestMethod.PUT)
+    public Perfil editar(@RequestBody Perfil perfil) {
+        return this.perfilService.salvarPerfil(perfil);
+    }
+
+    @RequestMapping(value = "/perfil/{id}", method = RequestMethod.DELETE)
+    public void deletar(@PathVariable String id) {
+        this.perfilService.deletePerfil(id);
     }
 }

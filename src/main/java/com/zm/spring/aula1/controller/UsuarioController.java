@@ -22,44 +22,42 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UsuarioController {
-
+    
     @Autowired
     UsuarioService usuarioService;
 
     @RequestMapping(value = "/usuario", method = RequestMethod.GET)
-    public List<Usuario> listarUsuario() {
-        return this.usuarioService.listarUsuario();
+    public List<Usuario> listar() {
+        return this.usuarioService.listaUsuario();
+    }
+
+    @RequestMapping(value = "/usuario/{id}", method = RequestMethod.GET)
+    public Usuario getById(@PathVariable String id) {
+        return this.usuarioService.getById(id);
+    }
+
+    @RequestMapping(value = "/usuario/{page}/{count}", method = RequestMethod.GET)
+    public Page<Usuario> listaPaginada(@PathVariable int page, @PathVariable int count) {
+        return this.usuarioService.listaPaginada(count, page);
+    }
+
+    @RequestMapping(value = "/usuario/{nome}/nome", method = RequestMethod.GET)
+    public List<Usuario> listaPaginada(@PathVariable String nome) {
+        return this.usuarioService.buscaPorNome(nome);
     }
 
     @RequestMapping(value = "/usuario", method = RequestMethod.POST)
-    public Usuario salvarUsuario(@RequestBody Usuario usuario) {
+    public Usuario salvar(@RequestBody Usuario usuario) {
         return this.usuarioService.salvarUsuario(usuario);
     }
 
     @RequestMapping(value = "/usuario", method = RequestMethod.PUT)
-    public Usuario editarUsuario(@RequestBody Usuario usuario) {
+    public Usuario editar(@RequestBody Usuario usuario) {
         return this.usuarioService.salvarUsuario(usuario);
     }
-    
+
     @RequestMapping(value = "/usuario/{id}", method = RequestMethod.DELETE)
-    public void deletarUsuario(@PathVariable String id) {
-        this.usuarioService.deletarUsuario(id);
-    }
-
-    @RequestMapping(value = "/usuario/{id}", method = RequestMethod.GET)
-    public Usuario consultarUsuario(@PathVariable String id) {
-        return this.usuarioService.consultarUsuario(id);
-    }
-
-    @RequestMapping(value = "/usuario/{page}/{count}", method = RequestMethod.GET)
-    public Page<Usuario> listarUsuarioPaginado(
-            @PathVariable int page,
-            @PathVariable int count) {
-        return this.usuarioService.listarUsuarioPaginado(page, count);
-    }
-    
-    @RequestMapping(value = "/usuario/{nome}/nome", method = RequestMethod.GET)
-    public List<Usuario> consultarPeloNome(@PathVariable String nome) {
-        return this.usuarioService.consultarPeloNome(nome);
+    public void deletar(@PathVariable String id) {
+        this.usuarioService.deleteUsuario(id);
     }
 }

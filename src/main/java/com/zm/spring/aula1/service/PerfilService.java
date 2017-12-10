@@ -23,29 +23,25 @@ public class PerfilService {
     
     @Autowired
     PerfilRepository perfilRepository;
-    
-    public List<Perfil> findAll() {
+
+    public List<Perfil> listaPerfil() {
         return perfilRepository.findAll();
     }
-    
-    public Page<Perfil> findAllPageable(int page, int size) {
-        Pageable pageable = new PageRequest(page, size);
-        return perfilRepository.findAll(pageable);
+
+    public Page<Perfil> listaPaginada(int count, int page) {
+        Pageable pages = new PageRequest(page, count);
+        return perfilRepository.findAll(pages);
     }
-    
-    public Perfil save(Perfil perfil) {
+
+    public Perfil salvarPerfil(Perfil perfil) {
         return perfilRepository.save(perfil);
     }
-    
-    public void delete(String id) {
+
+    public void deletePerfil(String id) {
         perfilRepository.delete(id);
     }
-    
-    public Perfil findOne(String id) {
+
+    public Perfil getById(String id) {
         return perfilRepository.findOne(id);
-    }
-    
-    public List<Perfil> findByNomeLikeIgnoreCase(String nome) {
-        return perfilRepository.findByNomeLikeIgnoreCase(nome);
     }
 }

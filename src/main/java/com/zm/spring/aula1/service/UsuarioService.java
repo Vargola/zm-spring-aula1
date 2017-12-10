@@ -25,28 +25,28 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<Usuario> listarUsuario() {
+    public List<Usuario> listaUsuario() {
         return usuarioRepository.findAll();
     }
 
-    public Usuario salvarUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
-
-    public void deletarUsuario(String id) {
-        usuarioRepository.delete(id);
-    }
-    
-    public Usuario consultarUsuario(String id) {
-        return usuarioRepository.findOne(id);
-    }
-    
-    public Page<Usuario> listarUsuarioPaginado(int page, int count) {
+    public Page<Usuario> listaPaginada(int count, int page) {
         Pageable pages = new PageRequest(page, count);
         return usuarioRepository.findAll(pages);
     }
-    
-    public List<Usuario> consultarPeloNome(String nome) {
+
+    public List<Usuario> buscaPorNome(String nome) {
         return usuarioRepository.findByNomeLikeIgnoreCase(nome);
+    }
+
+    public Usuario salvarUsuario(Usuario usuarioAdd) {
+        return usuarioRepository.save(usuarioAdd);
+    }
+
+    public void deleteUsuario(String id) {
+        usuarioRepository.delete(id);
+    }
+
+    public Usuario getById(String id) {
+        return usuarioRepository.findOne(id);
     }
 }
