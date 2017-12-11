@@ -50,7 +50,7 @@ public class OAuth2ServerConfiguration {
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
                     .and().authorizeRequests()
-                    .antMatchers("/perfil/**").hasAnyRole("OREIA")
+                    .antMatchers("/perfil/**").hasAnyRole("ADMIN, OREIA")
                     .antMatchers("/usuario/**").hasAnyRole("ADMIN, OREIA")
                     .anyRequest().denyAll()
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
