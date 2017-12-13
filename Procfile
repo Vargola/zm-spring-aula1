@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/zm-spring-aula1-1.0-SNAPSHOT.war	
+web: java -Dserver.port=$PORT -jar target/zm-spring-aula1-1.0.war	
