@@ -84,10 +84,10 @@ public class OAuth2ServerConfiguration {
                     .inMemory()
                     .withClient("cliente")
                     .authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("bar", "read", "write")
-                    .refreshTokenValiditySeconds(2592000)
+                    .refreshTokenValiditySeconds(86400)
                     .resourceIds(RESOURCE_ID)
                     .secret("123")
-                    .accessTokenValiditySeconds(200000988);
+                    .accessTokenValiditySeconds(30);
         }
 
         @Bean
