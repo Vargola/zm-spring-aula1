@@ -7,7 +7,6 @@ package com.zm.spring.aula1.service;
 
 import com.zm.spring.aula1.entity.Usuario;
 import com.zm.spring.aula1.repository.UsuarioRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
